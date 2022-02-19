@@ -1,0 +1,15 @@
+.navbar {
+  background-color: rgb(185, 181, 255, 0.16);
+  border-bottom: 3px solid #5d528f;
+  display: flex;
+  align-items: center;
+}
+.nav-brand img {
+  height: 48px;
+}
+
+.nav-right {
+  margin-left: auto;
+  margin-right: 3%;
+}
+
