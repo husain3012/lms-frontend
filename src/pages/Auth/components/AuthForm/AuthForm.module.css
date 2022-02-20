@@ -19,14 +19,25 @@
   color: #625796;
   font-weight: 500;
 }
+.form-group input::-webkit-input-placeholder {
+	color: #908F9B;
+}
 .form-group input.error {
   outline: 1px solid rgb(218, 116, 116);
   box-shadow: rgb(218, 116, 116) 0px 2px 8px 0px;
 }
 
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   transition: all 0.1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  font-size: 0.9rem;
+  color: #E6EAEA;
+  font-weight: bold;
+  margin-bottom: 2px;
 }
 
 .submit {
@@ -39,6 +50,7 @@
   color: #fff;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
+  margin-top: 16px;
 }
 .submit:hover {
   background-color: #fff;
@@ -69,6 +81,7 @@
   overflow: hidden;
   height: 0px;
   transition: all 0.1s ease-in-out;
+  text-align: right;
 }
 .error-show {
   height: 20px;

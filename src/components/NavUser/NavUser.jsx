@@ -15,7 +15,7 @@ const NavUser = (props) => {
 
   return (
     <div>
-      <img className={classes.avatar} src={UserIcon} alt="User Icon" />
+      <img className={classes.avatar} src={user.avatar || UserIcon} alt="User Icon" />
       <button onClick={logoutHandler}>Logout</button>
     </div>
   );
