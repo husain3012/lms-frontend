@@ -14,13 +14,13 @@
   margin-bottom: 20px;
 }
 .form-group input {
-  width: 17vw;
+  width: 30ch;
   font-size: 1.2rem;
   color: #625796;
   font-weight: 500;
 }
 .form-group input::-webkit-input-placeholder {
-	color: #908F9B;
+  color: #908f9b;
 }
 .form-group input.error {
   outline: 1px solid rgb(218, 116, 116);
@@ -29,13 +29,15 @@
 
 .form-group {
   margin-bottom: 10px;
+  width: 100%;
+
   transition: all 0.1s ease-in-out;
   display: flex;
   flex-direction: column;
 }
 .form-group label {
   font-size: 0.9rem;
-  color: #E6EAEA;
+  color: #e6eaea;
   font-weight: bold;
   margin-bottom: 2px;
 }
@@ -90,7 +92,6 @@
 }
 
 .loading-icon {
-  
   padding: 0;
   margin: 0;
   -webkit-animation: spin 1s linear infinite;
@@ -111,5 +112,12 @@
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+/* mobile screens */
+@media screen and (max-width: 768px) {
+  .form-group input {
+    width: auto;
   }
 }

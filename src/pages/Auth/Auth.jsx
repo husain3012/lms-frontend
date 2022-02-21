@@ -6,6 +6,7 @@ import BlobBackground from "../../components/common/BlobBackground";
 import StudentImg from "./assets/images/student.png";
 import TeacherImg from "./assets/images/teacher.png";
 import AuthForm from "./components/AuthForm/AuthForm";
+import { useSpring, a } from "react-spring";
 
 const NavButton = (props) => {
   const { type, onClick } = props;
@@ -24,6 +25,12 @@ const Auth = (props) => {
   const authType = props.authType || "login";
   const [userType, setUserType] = useState(props.userType || "student");
 
+  const { transform, opacity } = useSpring({
+    opacity: userType === "student" ? 1 : 0,
+    transform: `perspective(600px) rotateX(${userType === "student" ? 180 : 0}deg)`,
+    config: { mass: 5, tension: 600, friction: 55 },
+  });
+
   return (
     <>
       <Navbar right={<NavButton type={userType} onClick={setUserType} />} />
@@ -35,7 +42,17 @@ const Auth = (props) => {
           <AuthForm authType={authType} userType={userType} />
         </div>
         <div className={classes["landing-img"]}>
-          <img src={userType === "student" ? StudentImg : TeacherImg} alt="landing-img" />
+          {/* <img src={userType === "student" ? StudentImg : TeacherImg} alt="landing-img" /> */}
+
+          <a.img style={{ opacity: opacity.to((o) => 1 - o), transform }} src={StudentImg} alt="landing-img" />
+          <a.img
+            src={TeacherImg}
+            style={{
+              opacity,
+              transform,
+              rotateX: "180deg",
+            }}
+          />
         </div>
       </div>
     </>

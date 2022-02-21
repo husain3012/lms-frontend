@@ -1,0 +1,13 @@
+.backdrop {
+  backdrop-filter: blur(2px) saturate(45%);
+  -webkit-backdrop-filter: blur(2px) saturate(45%);
+  background-color: rgba(113, 112, 159, 0.21);
+  /* transition: all 0.3s ease-in-out; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+

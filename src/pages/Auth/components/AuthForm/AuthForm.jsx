@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginAction } from "../../../../app/authSlice";
 import { useNavigate } from "react-router-dom";
 import { RiLoader4Fill } from "react-icons/ri";
-import { Toast, makeToast } from "../../../../components/common/Toast";
+import { makeToast } from "../../../../components/common/Toast";
 
 const AuthForm = (props) => {
   const dispatch = useDispatch();
@@ -61,8 +61,6 @@ const AuthForm = (props) => {
   };
   return (
     <>
-     
-
       <Formik
         initialValues={{
           name: "",
@@ -89,8 +87,16 @@ const AuthForm = (props) => {
                 setAuthType("login");
               }
             } catch (error) {
-              alert(error.response.data.message);
               console.log("Error", error.response.data.message);
+              makeToast.error(error.response.data.message, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
               resetForm();
             }
           }

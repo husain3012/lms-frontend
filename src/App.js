@@ -11,6 +11,7 @@ import StudentDashboard from "./pages/StudentDashboard/StudentDashboard";
 import TeacherDashboard from "./pages/TeacherDashboard/TeacherDashboard";
 // css
 import "./App.css";
+import BackDrop from "./components/common/BackDrop";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const App = () => {
   return (
     <div className="App">
      <Toast />
+     <BackDrop/>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={isLoggedIn ? <Navigate to={"/" + userType} /> : <Home />} />
