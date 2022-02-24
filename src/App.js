@@ -12,11 +12,14 @@ import TeacherDashboard from "./pages/TeacherDashboard/TeacherDashboard";
 // css
 import "./App.css";
 import BackDrop from "./components/common/BackDrop";
+import Modal from "./components/common/Modal";
 
 const App = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
+    
     if (user) {
       dispatch(loginExistingUser(user));
     }
@@ -26,9 +29,10 @@ const App = () => {
   const userType = useSelector((state) => state.auth.type);
   console.log(userType);
   return (
-    <div className="App">
-     <Toast />
-     <BackDrop/>
+    <>
+      <Toast />
+      <BackDrop />
+      <Modal />
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={isLoggedIn ? <Navigate to={"/" + userType} /> : <Home />} />
@@ -54,7 +58,7 @@ const App = () => {
           />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 };
 

@@ -44,9 +44,9 @@ const Auth = (props) => {
         <div className={classes["landing-img"]}>
           {/* <img src={userType === "student" ? StudentImg : TeacherImg} alt="landing-img" /> */}
 
-          <a.img style={{ opacity: opacity.to((o) => 1 - o), transform }} src={StudentImg} alt="landing-img" />
+          <a.img style={{ opacity: opacity.to((o) => 1 - o), transform }} src={TeacherImg} alt="landing-img" />
           <a.img
-            src={TeacherImg}
+            src={StudentImg}
             style={{
               opacity,
               transform,

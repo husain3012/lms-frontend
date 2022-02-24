@@ -4,15 +4,23 @@ import { makeToast } from "../components/common/Toast";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const loginAction = createAsyncThunk("users/fetchByIdStatus", async (userData, thunkAPI) => {
+export const loginAction = createAsyncThunk(process.env.REACT_APP_BACKEND + "users/fetchByIdStatus", async (userData, thunkAPI) => {
   const { email, password, userType } = userData;
+  let backend_host;
+  if (process.env.NODE_ENV === "development") {
+    backend_host = "";
+  } else {
+    backend_host = "https://lms-backend-jmi.herokuapp.com";
+  }
+
   try {
-    const response = await axios.post(`/api/${userType}/login`, { email, password });
+    const response = await axios.post(`${backend_host}/api/${userType}/login`, { email, password });
     console.log(response);
     console.log("triggering login");
 
     // save user data to local storage
     localStorage.setItem("user", JSON.stringify(response.data));
+    localStorage.setItem("token", response.data.token);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response.data);
@@ -71,6 +79,7 @@ const AuthSlice = createSlice({
     [loginAction.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
+
       makeToast.error(action.payload.message, {
         position: "top-right",
         autoClose: 3000,

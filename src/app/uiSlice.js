@@ -5,16 +5,19 @@ const uiSlice = createSlice({
   name: "ui",
   initialState: {
     backDrop: false,
+    modal: false,
   },
   reducers: {
-    enableBackDrop: (state) => {
+    showModal: (state, action) => {
+      state.modal = true;
       state.backDrop = true;
     },
-    disableBackDrop: (state) => {
+    hideModal: (state) => {
+      state.modal = false;
       state.backDrop = false;
     },
   },
 });
 
-export const { enableBackDrop, disableBackDrop } = uiSlice.actions;
+export const { showModal, hideModal } = uiSlice.actions;
 export default uiSlice.reducer;

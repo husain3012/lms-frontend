@@ -1,0 +1,42 @@
+.container {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  background-color: #e5e5e5;
+  margin: 30px;
+  height: 310px;
+  width: 290px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+}
+
+.sub-card {
+  text-decoration: none;
+  border-radius: 5px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  text-align: left;
+  padding: 10px;
+  background-color: #3e497a;
+}
+
+.sub-card-heading {
+  font-size: 2.2em;
+  color: #ffffff;
+}
+.sub-card-tchr {
+  font-size: 0.9em;
+  color: #eee;
+}
+.rem-card {
+  padding: 10px;
+  border-bottom-style: inherit;
+}
+
+.sub-card p {
+  margin: 0;
+}

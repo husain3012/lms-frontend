@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./BackDrop.module.css";
-import { disableBackDrop } from "../../app/uiSlice";
+import { hideModal } from "../../app/uiSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useTransition, animated } from "react-spring";
 
@@ -17,9 +17,8 @@ const BackDrop = () => {
     // config: config.molasses,
   });
   const closeBackDrop = () => {
-    dispatch(disableBackDrop());
+    dispatch(hideModal());
   };
-
 
   return transitions((styles, item) => item && <animated.div onClick={closeBackDrop} className={classes.backdrop} style={styles}></animated.div>);
 };

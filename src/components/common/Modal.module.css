@@ -7,3 +7,28 @@
   background-color: #fff;
   border-radius: 10px;
 }
+.modal-header {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #5d528f;
+}
+.close {
+  background-color: transparent;
+  border: none;
+  color: #3e497a;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 42px;
+  font-weight: lighter;
+}
+.close:hover {
+  color: #b63838;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-body {
+  padding: 20px;
+}

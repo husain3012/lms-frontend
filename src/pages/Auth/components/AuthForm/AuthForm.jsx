@@ -80,7 +80,14 @@ const AuthForm = (props) => {
           }
           if (authType === "signup") {
             try {
-              const response = await axios.post(`/api/${props.userType}/signup`, data);
+              let backend_host;
+              if (process.env.NODE_ENV === "development") {
+                backend_host = "";
+              } else {
+                backend_host = "https://lms-backend-jmi.herokuapp.com/";
+              }
+
+              const response = await axios.post(`${backend_host}/api/${props.userType}/signup`, data);
               console.log(response);
               if (response.status === 200) {
                 alert("Signup Successful, please login");
@@ -95,7 +102,7 @@ const AuthForm = (props) => {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-                progress: undefined,
+              progress: undefined,
               });
               resetForm();
             }
