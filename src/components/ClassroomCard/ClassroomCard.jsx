@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./ClassroomCard.module.css";
 import axios from "axios";
-import { RiDragMoveLine } from "react-icons/ri";
+import { RiDeleteBack2Line, RiDragMoveLine } from "react-icons/ri";
 import Draggable from "react-draggable";
+import { getClassroomsAction } from "../../app/classroomSlice";
+import { useDispatch } from "react-redux";
 
 export const ClassroomCardStudent = React.forwardRef((props, ref) => {
   const style = {
@@ -32,6 +34,7 @@ export const ClassroomCardStudent = React.forwardRef((props, ref) => {
 });
 
 export const ClassroomCardTeacher = (props) => {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(0);
   const token = localStorage.getItem("token");
@@ -54,6 +57,16 @@ export const ClassroomCardTeacher = (props) => {
     fetchData();
   }, [props.classroom_id, token]);
 
+  const deleteClassroomHandler = async () => {
+    const result = await axios.delete(`/api/classroom/${props.classroom_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(result);
+    dispatch(getClassroomsAction());
+  };
+
   const nodeRef = useRef(null);
 
   return (
@@ -68,6 +81,9 @@ export const ClassroomCardTeacher = (props) => {
         <div id={`move_${props.classroom_id}`} className={classes["rem-card"]}>
           <p>{props.description}</p>
           <button onClick={() => navigator.clipboard.writeText(props.short_id)}>Copy</button>
+          <button onClick={deleteClassroomHandler}>
+            <RiDeleteBack2Line />
+          </button>
         </div>
       </div>
     </Draggable>
