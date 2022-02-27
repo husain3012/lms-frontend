@@ -1,6 +1,75 @@
 .main {
   min-height: calc(100vh - 80px);
+  height: 100%;
   padding-top: 25px;
-  background-color: #f5f5f5;
+  padding-left: 10px;
+  background-color: #fff;
   background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+}
+.classrooms {
+  /* display: flex;
+  flex-wrap: wrap; */
+  margin-top: 50px;
+  display: grid;
+  padding-right: 30%;
+  padding-bottom: 30vh;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+  place-items: center;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+
+h1.welcome {
+  padding-left: 20px;
+  font-size: 2rem;
+  color: #5d528f;
+}
+.canvas {
+  border: 1px solid #efffef;
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.canvas-menu {
+  position: fixed;
+  z-index: 1;
+  right: 20px;
+  bottom: 20px;
+  max-width: 55px;
+  height: 50px;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  justify-content: end;
+  overflow: hidden;
+}
+.canvas-menu:hover {
+  max-width: 300px;
+  transition: all 0.5s ease-in-out;
+}
+.enable-canvas {
+  margin: 0 5px;
+  font-size: 32px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px !important;
+  height: 50px !important;
+  color: #71709f;
+  transition: all 0.3s ease;
+
+}
+.enable-canvas:hover {
+  border-color: #71709f;
+  transition: all 0.3s ease;
+}
+.enable-canvas.active {
+  background-color: #71709f;
+  color: #fff;
+  transition: all 0.3s ease;
 }

@@ -1,40 +1,48 @@
-.container {
-  text-decoration: none;
-  color: inherit;
-}
-
 .card {
-  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: column;
   margin: 30px;
   height: 310px;
   width: 290px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 5px;
+  background-color: #fff;
+  /* border: 1px solid #efffef; */
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .sub-card {
-  text-decoration: none;
-  border-radius: 5px;
-  height: 100px;
-  margin: 0;
-  padding: 0;
-  color: #ffffff;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 35%;
   padding: 10px;
-  background-color: #3e497a;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-image: url("https://www.transparenttextures.com/patterns/crissxcross.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .sub-card-heading {
+  text-decoration: none;
+
   font-size: 2.2em;
   color: #ffffff;
 }
-.sub-card-tchr {
+.sub-card-heading:hover {
+  text-decoration: underline;
+}
+.sub-card-footer {
   font-size: 0.9em;
   color: #eee;
+  margin-top: auto;
+  display: flex;
 }
 .rem-card {
   padding: 10px;
   border-bottom-style: inherit;
+  height: 65%;
+  cursor: grab;
 }
 
 .sub-card p {

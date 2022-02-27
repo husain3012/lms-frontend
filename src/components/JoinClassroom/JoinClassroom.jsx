@@ -6,6 +6,7 @@ import axios from "axios";
 import { makeToast } from "../common/Toast";
 import { hideModal } from "../../app/uiSlice";
 import { useDispatch } from "react-redux";
+import { getClassroomsAction } from "../../app/classroomSlice";
 const JoinClassroom = () => {
   const dispatch = useDispatch();
   const token = JSON.parse(localStorage.getItem("user")).token;
@@ -47,6 +48,7 @@ const JoinClassroom = () => {
                   pauseOnHover: true,
                   draggable: true,
                 });
+                dispatch(getClassroomsAction());
               }
             } catch (error) {
               console.log("Error", error.response.data.message);
