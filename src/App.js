@@ -17,9 +17,9 @@ import NotePage from "./pages/NotePage/NotePage";
 import "./App.css";
 import BackDrop from "./components/common/BackDrop";
 import Modal from "./components/common/Modal";
-import 'react-quill/dist/quill.core.css'
+import "react-quill/dist/quill.core.css";
 import "react-quill/dist/quill.snow.css"; // ES6
-import 'highlight.js/styles/github.css';
+import "highlight.js/styles/github.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
@@ -39,11 +39,12 @@ const App = () => {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   axios.defaults.headers.common["Content-Type"] = "application/json";
   // base url for backend
-  let backend_host;
-  if (process.env.NODE_ENV === "development") {
+  let backend_host = "";
+  console.log(process.env.REACT_APP_BACKEND_HOST);
+  if (process.env.REACT_APP_BACKEND_HOST === "development") {
     backend_host = "";
   } else {
-    backend_host = "https://lms-backend-jmi.herokuapp.com";
+    backend_host = "https://dbms-lms-backend.herokuapp.com";
   }
   axios.defaults.baseURL = backend_host;
 
