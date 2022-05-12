@@ -44,7 +44,7 @@ const App = () => {
   if (process.env.REACT_APP_ENVIRONMENT === "development") {
     backend_host = "";
   } else {
-    backend_host = "https://dbms-lms-backend.herokuapp.com";
+    backend_host = process.env.REACT_APP_BACKEND;
   }
   axios.defaults.baseURL = backend_host;
 
