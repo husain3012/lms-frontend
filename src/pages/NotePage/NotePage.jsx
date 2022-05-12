@@ -186,6 +186,7 @@ const NotePage = () => {
                 <h3 className={classes.submissionTitle} style={{ color: note.classroom_color }}>
                   All submissions
                 </h3>
+                <hr />
 
                 <Accordion>
                   {allSubmissions
@@ -216,6 +217,7 @@ const NotePage = () => {
                   <h3 className={classes.submissionTitle} style={{ color: note.classroom_color }}>
                     Missing submissions
                   </h3>
+                  <hr />
 
                   {allSubmissions
                     .filter((sub) => sub.submissions.length === 0)
