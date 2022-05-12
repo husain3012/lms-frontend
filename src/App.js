@@ -47,9 +47,11 @@ const App = () => {
     backend_host = "https://dbms-lms-backend.herokuapp.com";
   }
   axios.defaults.baseURL = backend_host;
-
-  console.log(token);
-  console.log(userType);
+  // access control headers
+  axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+  axios.defaults.headers.common["Access-Control-Allow-Headers"] = "Origin, X-Requested-With, Content-Type, Accept";
+  axios.defaults.headers.common["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, PATCH, OPTIONS";
+  axios.defaults.headers.common["Access-Control-Allow-Credentials"] = "true";
 
   // default config for axios
   return (
