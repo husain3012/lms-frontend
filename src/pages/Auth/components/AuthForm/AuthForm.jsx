@@ -80,14 +80,9 @@ const AuthForm = (props) => {
           }
           if (authType === "signup") {
             try {
-              let backend_host;
-              if (process.env.NODE_ENV === "development") {
-                backend_host = "";
-              } else {
-                backend_host = "https://lms-backend-jmi.herokuapp.com/";
-              }
+           
 
-              const response = await axios.post(`${backend_host}/api/${props.userType}/signup`, data);
+              const response = await axios.post(`/api/${props.userType}/signup`, data);
               console.log(response);
               if (response.status === 200) {
                 makeToast.success("Signup Successful!");

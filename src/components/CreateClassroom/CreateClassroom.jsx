@@ -70,14 +70,9 @@ const CreateClassroom = (props) => {
               },
             };
             try {
-              let backend_host;
-              if (process.env.NODE_ENV === "development") {
-                backend_host = "";
-              } else {
-                backend_host = "https://lms-backend-jmi.herokuapp.com/";
-              }
+            
 
-              const response = await axios.post(`${backend_host}/api/classroom/create`, data, config);
+              const response = await axios.post(`/api/classroom/create`, data, config);
               console.log(response);
               if (response.status === 200) {
                 makeToast("success", "Classroom Created!");

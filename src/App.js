@@ -22,6 +22,7 @@ import "react-quill/dist/quill.snow.css"; // ES6
 import "highlight.js/styles/github.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 const App = () => {
   const dispatch = useDispatch();
 
@@ -37,21 +38,15 @@ const App = () => {
   const token = useSelector((state) => state.auth.token);
   const userType = useSelector((state) => state.auth.type);
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  axios.defaults.headers.common["Content-Type"] = "application/json";
   // base url for backend
   let backend_host = "";
-  console.log(process.env.REACT_APP_BACKEND_HOST);
-  if (process.env.REACT_APP_BACKEND_HOST === "development") {
+  console.log(process.env.REACT_APP_ENVIRONMENT);
+  if (process.env.REACT_APP_ENVIRONMENT === "development") {
     backend_host = "";
   } else {
     backend_host = "https://dbms-lms-backend.herokuapp.com";
   }
   axios.defaults.baseURL = backend_host;
-  // access control headers
-  axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-  axios.defaults.headers.common["Access-Control-Allow-Headers"] = "Origin, X-Requested-With, Content-Type, Accept";
-  axios.defaults.headers.common["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, PATCH, OPTIONS";
-  axios.defaults.headers.common["Access-Control-Allow-Credentials"] = "true";
 
   // default config for axios
   return (

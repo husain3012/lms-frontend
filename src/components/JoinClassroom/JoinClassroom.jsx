@@ -29,14 +29,8 @@ const JoinClassroom = () => {
                 Authorization: `Bearer ${token}`,
               },
             };
-            let backend_host;
-            if (process.env.NODE_ENV === "development") {
-              backend_host = "";
-            } else {
-              backend_host = "https://lms-backend-jmi.herokuapp.com/";
-            }
             try {
-              const response = await axios.post(`${backend_host}/api/classroom/join`, data, config);
+              const response = await axios.post(`/api/classroom/join`, data, config);
               console.log(response);
               if (response.status === 200) {
                 dispatch(hideModal());

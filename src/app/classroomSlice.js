@@ -9,15 +9,9 @@ export const getClassroomsAction = createAsyncThunk(process.env.REACT_APP_BACKEN
 
   console.log(userType);
   console.log(token);
-  let backend_host;
-  if (process.env.NODE_ENV === "development") {
-    backend_host = "";
-  } else {
-    backend_host = "https://lms-backend-jmi.herokuapp.com";
-  }
 
   try {
-    const response = await axios.get(`${backend_host}/api/classroom/${userType === "teacher" ? "created" : "joined"}`);
+    const response = await axios.get(`/api/classroom/${userType === "teacher" ? "created" : "joined"}`);
     return response.data;
   } catch (error) {
     console.log(error);

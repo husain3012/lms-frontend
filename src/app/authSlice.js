@@ -6,15 +6,9 @@ import axios from "axios";
 
 export const loginAction = createAsyncThunk(process.env.REACT_APP_BACKEND + "users/fetchByIdStatus", async (userData, thunkAPI) => {
   const { email, password, userType } = userData;
-  let backend_host;
-  if (process.env.NODE_ENV === "development") {
-    backend_host = "";
-  } else {
-    backend_host = "https://lms-backend-jmi.herokuapp.com";
-  }
 
   try {
-    const response = await axios.post(`${backend_host}/api/${userType}/login`, { email, password });
+    const response = await axios.post(`/api/${userType}/login`, { email, password });
     console.log(response);
     console.log("triggering login");
 
