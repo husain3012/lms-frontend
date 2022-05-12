@@ -17,19 +17,13 @@ export const getClassroomsAction = createAsyncThunk(process.env.REACT_APP_BACKEN
   }
 
   try {
-    const response = await axios.get(`${backend_host}/api/classroom/${userType === "teacher" ? "created" : "joined"}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(`${backend_host}/api/classroom/${userType === "teacher" ? "created" : "joined"}`);
     return response.data;
   } catch (error) {
     console.log(error);
     return error.response.data;
   }
 });
-
-
 
 const ClassroomSlice = createSlice({
   name: "classroom",
@@ -79,5 +73,3 @@ const ClassroomSlice = createSlice({
 export const { reorderClassrooms } = ClassroomSlice.actions;
 
 export default ClassroomSlice.reducer;
-
-

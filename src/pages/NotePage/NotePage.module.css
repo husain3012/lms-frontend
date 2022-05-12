@@ -1,0 +1,162 @@
+.main {
+  display: flex;
+  /* flex-direction: column; */
+  padding: 5vh 20%;
+  background-color: #fff;
+  background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+  min-height: calc(100vh - 56px);
+}
+.leftPane {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+.typeIcon {
+  position: absolute;
+  font-size: 32px;
+  margin-left: -55px;
+  margin-top: 5px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.noteInfo {
+  width: 100%;
+}
+.noteInfoHeader {
+  display: flex;
+  flex-direction: column;
+}
+.notePostingInfo {
+  font-size: 0.9rem;
+  color: #7f8487;
+}
+.notePostingInfo a {
+  color: #7f8487;
+}
+.noteContent {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1rem;
+}
+
+.rightPane {
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.submission {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+}
+
+.submissionHistory {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+  margin-top: 50px;
+}
+.allSubmissions {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+  margin-top: 50px;
+}
+.accordionHeader {
+  padding: 0;
+  width: 15ch;
+}
+.submissionHistoryItem {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.submissionHistoryItem p {
+  margin-bottom: 5px;
+  color: #7f8487;
+  font-size: 0.85rem;
+}
+.submissionHistoryItem p svg {
+  margin-top: -5px;
+}
+.historyItemButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10%;
+}
+.historyItemButtons a {
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 3px 1rem;
+}
+.historyItemButtons button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 3px 1rem;
+}
+
+.rightPane .submissionTitle {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+.rightPane .submissionInput {
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.allSubmissionItem {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+.allSubmissionItem span {
+  font-size: 0.9rem;
+  color: #7f8487;
+}
+.submissionItemButtons a{
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 3px 1rem;
+  padding-bottom: 5px;
+} 
+
+.missingSubmissionItem{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 1.2rem;
+}
+.missingSubmissionItem a{
+  text-decoration: none;
+  color: inherit;
+  border-radius: 2px;
+  padding: 3px 1rem;
+  padding-bottom: 5px;
+
+}

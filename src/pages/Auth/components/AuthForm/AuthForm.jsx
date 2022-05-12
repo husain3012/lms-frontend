@@ -90,7 +90,7 @@ const AuthForm = (props) => {
               const response = await axios.post(`${backend_host}/api/${props.userType}/signup`, data);
               console.log(response);
               if (response.status === 200) {
-                alert("Signup Successful, please login");
+                makeToast.success("Signup Successful!");
                 setAuthType("login");
               }
             } catch (error) {
@@ -102,7 +102,7 @@ const AuthForm = (props) => {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
-              progress: undefined,
+                progress: undefined,
               });
               resetForm();
             }

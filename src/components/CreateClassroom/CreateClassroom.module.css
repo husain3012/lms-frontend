@@ -40,3 +40,35 @@
   pointer-events: auto;
   transition: all 0.1s ease-in-out;
 }
+
+.top-fields {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.top-fields-left{
+  width: 50%;
+}
+.top-fields-right{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group button[type="submit"] {
+  margin-top: 10px;
+  background-color: #5d528f;
+  outline: none;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.form-group button[type="submit"]:hover {
+  transition: all 0.3s ease;
+  background-color: #fff;
+  color: #5d528f;
+  border: 1px solid #5d528f;
+}

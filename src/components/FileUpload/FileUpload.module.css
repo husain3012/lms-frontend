@@ -1,0 +1,46 @@
+.uploadBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px dotted #ccc;
+  background-color: #eee;
+  padding: 7px 2rem;
+  min-width: 128px;
+  min-height: 128px;
+  margin: 10px 0;
+  font-size: 32px;
+  color: #413f42;
+}
+
+.previewFile {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.previewFile .filePlaceholder {
+  background-color: #eee;
+  border-radius: 5px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #7F8487;
+  width: 200px;
+  height: 200px;
+}
+.actions {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+.actions button {
+  margin: auto 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 7px 2rem;
+}

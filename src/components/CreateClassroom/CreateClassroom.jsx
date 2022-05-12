@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./CreateClassroom.module.css";
 import Modal from "../common/Modal";
@@ -7,47 +7,60 @@ import axios from "axios";
 import { makeToast } from "../common/Toast";
 import { hideModal } from "../../app/uiSlice";
 import { getClassroomsAction } from "../../app/classroomSlice";
-
+import { GithubPicker, CirclePicker } from "react-color";
+import { ClassroomCardStudent } from "../ClassroomCard/ClassroomCard";
 import { Navigate } from "react-router-dom";
-const ClassroomPreview = () => {
-  return (
-    <div className={classes.preview}>
-      <div className={classes.preview_card}>
-        <div className={classes.preview_card_sub}>
-          <p className={classes.preview_card_sub_heading}>
-            <b>Subject</b>
-          </p>
-          <p className={classes.preview_card_sub_tchr}>
-            <b>Taught By</b>
-          </p>
-        </div>
-        <div className={classes.preview_card_rem}>
-          <p className={classes.preview_card_rem_heading}>
-            <b>Description</b>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+
+const colors = ["#B8405E", "#1967d2", "#e52592", "#e8710a", "#129eaf", "#9334e6", "#5f6368", "#205375", "#FF6363"];
 
 const CreateClassroom = (props) => {
   const dispatch = useDispatch();
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  const { token, user: teacher } = JSON.parse(localStorage.getItem("user"));
+  const [classroomName, setClassroomName] = useState("");
+  const [section, setSection] = useState("");
+  const [description, setDescription] = useState("");
+  const [color, setColor] = useState(colors[Math.floor(Math.random() * colors.length)]);
+  useEffect(() => {
+    return () => {
+      setColor(colors[Math.floor(Math.random() * colors.length)]);
+      setClassroomName("");
+      setSection("");
+      setDescription("");
+    };
+  }, []);
+
+  const formChangeHandler = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "name":
+        setClassroomName(value);
+        break;
+      case "section":
+        setSection(value);
+        break;
+      case "description":
+        setDescription(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <Modal header="Create Classroom">
       <div className={classes["modal-body"]}>
         <Formik
           initialValues={{
-            name: "",
-            description: "",
-            section: "",
+            name: classroomName,
+            description: description,
+            section: section,
           }}
           onSubmit={async (values, { resetForm }) => {
             const data = {
               name: values.name,
               description: values.description,
               section: values.section,
+              color: color,
             };
 
             const config = {
@@ -87,20 +100,37 @@ const CreateClassroom = (props) => {
             }
           }}
         >
-          <Form>
-            <div className={classes["form-group"]}>
-              <label htmlFor="name">Name</label>
-              <Field autoComplete="off" name="name" type="text" />
+          <Form onChange={formChangeHandler}>
+            <div className={classes["top-fields"]}>
+              <div className={classes["top-fields-left"]}>
+                <div className={classes["form-group"]}>
+                  <label htmlFor="name">Name</label>
+                  <Field autoComplete="off" name="name" type="text" />
+                </div>
+                <div className={classes["form-group"]}>
+                  <label htmlFor="description">Section</label>
+                  <Field autoComplete="off" name="section" type="text" />
+                </div>
+
+                <div className={classes["form-group"]}>
+                  <label htmlFor="description">Description</label>
+                  <Field component="textarea" rows={5} name="description" />
+                </div>
+              </div>
+              <div className={classes["top-fields-right"]}>
+              <span style={{textAlign:"center", margin:"auto"}}>Preview</span>
+                <ClassroomCardStudent name={classroomName} description={description} section={section} teacher_name={teacher?.name} color={color} draggable={false} />
+              </div>
             </div>
-            <div className={classes["form-group"]}>
-              <label htmlFor="description">Section</label>
-              <Field autoComplete="off" name="section" type="text" />
+            <div style={{ textAlign: "center" }} className={classes["form-group"]}>
+              <label style={{ margin: "10px auto" }} htmlFor="description">
+                Accent Color
+              </label>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <CirclePicker onChange={(v) => setColor(v.hex)} color={color} triangle={false} colors={colors} width={42 * colors.length} />
+              </div>
             </div>
 
-            <div className={classes["form-group"]}>
-              <label htmlFor="description">Description</label>
-              <Field component="textarea" name="description" />
-            </div>
             <div className={classes["form-group"]}>
               <button type="submit">Create</button>
             </div>

@@ -9,6 +9,7 @@ import AddIcon from "../../assets/svg/AddIcon.svg";
 import { showModal } from "../../app/uiSlice";
 import CreateClassroom from "../CreateClassroom/CreateClassroom";
 import JoinClassroom from "../JoinClassroom/JoinClassroom";
+import { IoMdLogOut } from "react-icons/io";
 const NavUser = (props) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
@@ -30,7 +31,9 @@ const NavUser = (props) => {
         <div className={classes["icon-container"]}>
           <img className={classes.avatar} src={user.avatar || UserIcon} alt="User Icon" />
         </div>
-        <button onClick={logoutHandler}>Logout</button>
+        <button className={classes.logout} onClick={logoutHandler}>
+          <IoMdLogOut />
+        </button>
       </div>
     </>
   );

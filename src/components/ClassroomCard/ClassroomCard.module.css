@@ -25,12 +25,15 @@
 
 .sub-card-heading {
   text-decoration: none;
-
-  font-size: 2.2em;
+  font-size: 2em;
   color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .sub-card-heading:hover {
   text-decoration: underline;
+  color: #ffffff;
 }
 .sub-card-footer {
   font-size: 0.9em;
@@ -42,9 +45,27 @@
   padding: 10px;
   border-bottom-style: inherit;
   height: 65%;
-  cursor: grab;
+  /* cursor: grab; */
+  display: flex;
+  flex-direction: column;
+}
+.rem-card p{
+  word-wrap: break-word;
+}
+.btn-links {
+  margin-top: auto;
+  text-align: right;
 }
 
+.btn-links button {
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  margin: auto 5px;
+  padding: 1px 8px;
+  padding-bottom: 4px;
+  border-radius: 3px;
+}
 .sub-card p {
   margin: 0;
 }

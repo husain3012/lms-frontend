@@ -67,7 +67,7 @@ const JoinClassroom = () => {
           <Form>
             <div className={classes["form-group"]}>
               <label htmlFor="classroomCode">Classroom Code</label>
-              <Field type="text" name="classroomCode" id="classroomCode" className={classes.form_control} />
+              <Field required type="text" name="classroomCode" id="classroomCode" className={classes.form_control} />
             </div>
             <div className={classes["form-group"]}>
               <button type="submit">Join</button>

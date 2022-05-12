@@ -1,0 +1,117 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  padding: 5vh 20%;
+  min-height: calc(100vh - 56px);
+  background-color: #fff;
+  background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+}
+.headerCard {
+  min-height: 30vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 2%;
+  margin-bottom: 4vh;
+}
+.headerCardContent {
+  color: #fff;
+  font-size: 1.4rem;
+}
+.postFormContainer {
+  display: flex;
+}
+.leftInfoPane {
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+}
+.editor {
+  width: 80%;
+}
+.editor .titleInput{
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.editor .titleInput:focus{
+  outline: none;
+}
+.rightInfoPane {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 10px;
+}
+
+.postButton {
+  margin-top: 10px;
+  /* background-color: #5d528f; */
+  outline: none;
+  border: none;
+  /* color: #fff; */
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+.postButton:hover {
+  transition: all 0.3s ease;
+  /* background-color: #fff; */
+  /* color: #5d528f; */
+  /* border: 1px solid #5d528f; */
+}
+
+.classCodeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+.classCodeBox .classCodeTitle {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  white-space: nowrap;
+  color: #112b3c;
+}
+.classCodeBox span {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  margin-top: 5px;
+  color: #112b3c;
+}
+
+.quill {
+  min-height: 25vh;
+  padding-bottom: 10px;
+  width: 100%;
+  margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-top: 5px;
+  background-color: #fff;
+}
+
+.quill > div {
+  border: none !important;
+  outline: none !important;
+}
+
+.quill > div:first-child {
+  background: #fff;
+}
+.quill p {
+  font-size: 20px !important;
+  letter-spacing: 0.6px !important;
+}
