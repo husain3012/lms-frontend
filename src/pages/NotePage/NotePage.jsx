@@ -286,7 +286,7 @@ const NotePage = () => {
               )}
             </div>
           </div>
-          {userType === "teacher" && (
+          {note.type === "assignment" && userType === "teacher" &&  (
             <div className={classes.submissionStats}>
               <h3 className={classes.submissionTitle} style={{ color: themeColor }}>
                 Submission Stats
