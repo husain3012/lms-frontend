@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import RequireAuth from "./utils/RequireAuth";
 import { loginExistingUser } from "./app/authSlice";
-import { Toast } from "./components/common/Toast";
+import { makeToast, Toast } from "./components/common/Toast";
 import axios from "axios";
 // Pages
 import Home from "./pages/Home/Home";
@@ -22,9 +22,10 @@ import "react-quill/dist/quill.snow.css"; // ES6
 import "highlight.js/styles/github.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
+let initialRender = true;
 const App = () => {
   const dispatch = useDispatch();
+  const [isBackendOffline, setIsBackendOffline] = useState(null);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -47,6 +48,70 @@ const App = () => {
     backend_host = process.env.REACT_APP_BACKEND;
   }
   axios.defaults.baseURL = backend_host;
+
+  useEffect(() => {
+    if (initialRender) {
+      initialRender = false;
+      return;
+    }
+    if (!isBackendOffline) {
+      makeToast.info("Service Online!", {
+        position: "top-right",
+        autoClose: true,
+        hideProgressBar: false,
+        closeOnClick: false,
+        closeButton: false,
+        duration: 1000,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+      });
+    } else {
+      makeToast.error("Server is down, trying to reconnect...", {
+        position: "top-right",
+        autoClose: true,
+        hideProgressBar: false,
+        closeOnClick: false,
+        closeButton: false,
+        duration: 1000,
+        pauseOnFocusLoss: false,
+        pauseOnHover: false,
+
+        
+      });
+    }
+    initialRender = false;
+  }, [isBackendOffline]);
+
+  useEffect(() => {
+    // ping server
+
+    const ping = async () => {
+      try {
+        const res = await axios.get("/ping");
+        console.log(res);
+        if (res.status === 200) {
+          setIsBackendOffline(false);
+          console.log("server is up");
+          return true;
+        }
+      } catch (error) {
+        setIsBackendOffline(Math.random());
+
+        return false;
+      }
+    };
+
+    const pingRecursive = async () => {
+      const isOnline = await ping();
+      if (!isOnline) {
+        setTimeout(() => {
+          pingRecursive();
+        }, 7000);
+      }
+    };
+
+    pingRecursive();
+  }, []);
 
   // default config for axios
   return (

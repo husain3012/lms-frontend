@@ -9,6 +9,8 @@ export const rgbToHex = (r, g, b) => {
 
 // get darker color from hex
 export const getDarkerColor = (hex) => {
+  // return null if hex is not valid color
+  if (!hex || !hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i)) return null;
   // convert hex to rgb
   console.log(hex);
   const rgb = hexToRgb(hex);

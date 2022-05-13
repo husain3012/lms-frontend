@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getDarkerColor } from "../utils/colors";
 
 // UI slice
 const uiSlice = createSlice({
@@ -6,6 +7,8 @@ const uiSlice = createSlice({
   initialState: {
     backDrop: false,
     modal: false,
+    themeColor: null,
+    themeColorDark: null,
   },
   reducers: {
     showModal: (state, action) => {
@@ -16,8 +19,12 @@ const uiSlice = createSlice({
       state.modal = false;
       state.backDrop = false;
     },
+    setColorTheme: (state, action) => {
+      state.themeColor = action.payload;
+      state.themeColorDark = getDarkerColor(action.payload);
+    },
   },
 });
 
-export const { showModal, hideModal } = uiSlice.actions;
+export const { showModal, hideModal, setColorTheme } = uiSlice.actions;
 export default uiSlice.reducer;

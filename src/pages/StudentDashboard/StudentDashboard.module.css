@@ -7,13 +7,11 @@
   background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
 }
 .classrooms {
-  /* display: flex;
-  flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 50px;
-  display: grid;
   padding-right: 30%;
   padding-bottom: 30vh;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
   place-items: center;
   column-gap: 10px;
   row-gap: 15px;
@@ -72,4 +70,14 @@ h1.welcome {
   background-color: #71709f;
   color: #fff;
   transition: all 0.3s ease;
+}
+
+.noClassrooms{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.5rem;
+  color: #7f8487;
+  margin-top: 20vh;
 }

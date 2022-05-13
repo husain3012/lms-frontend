@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import classes from "./TeacherDashboard.module.css";
 import NavUser from "../../components/NavUser/NavUser";
 import axios from "axios";
-import { ClassroomCardTeacher } from "../../components/ClassroomCard/ClassroomCard";
+import { ClassroomCardTeacher, ClassroomCardSkeleton } from "../../components/ClassroomCard/ClassroomCard";
 import { getClassroomsAction, reorderClassrooms } from "../../app/classroomSlice";
 //
 
@@ -27,25 +27,24 @@ const TeacherDashboard = () => {
 
       <div className={classes.main}>
         <h1 className={classes.welcome}>Welcome {user.name}! </h1>
-        {
-          <div className={classes.container}>
-            {!loading && !error && classrooms.length === 0 && <h2>You have no classrooms yet!</h2>}
-            {!loading && !error && classrooms.length > 0 && (
-              <div className={classes.classrooms}>
-                {/* <DragAndDrop>
-                  {classrooms.map((classroom, index) => {
-                    return <ClassroomCardTeacher key={classroom._id} {...classroom} /> 
-                    return <div key={classroom._id}>sdjksjd</div>;
-                  })}
-                </DragAndDrop> */}
-                {classrooms.map((classroom, index) => {
-                  return <ClassroomCardTeacher key={classroom._id} {...classroom} />;
-                })}
+        {!loading && !error && classrooms.length === 0 && <h2 className={classes.noClassrooms}>You have not created any classroom :(</h2>}
 
-              </div>
-            )}
-          </div>
-        }
+        <div className={classes.container}>
+          {loading && (
+            <div className={classes.classrooms}>
+              {[...Array(3)].map((_, index) => (
+                <ClassroomCardSkeleton key={index} />
+              ))}
+            </div>
+          )}
+          {!loading && !error && classrooms.length > 0 && (
+            <div className={classes.classrooms}>
+              {classrooms.map((classroom, index) => {
+                return <ClassroomCardTeacher key={classroom._id} {...classroom} />;
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

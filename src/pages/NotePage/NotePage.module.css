@@ -1,7 +1,20 @@
 .main {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   padding: 5vh 20%;
+  background-color: #fff;
+  background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+  min-height: calc(100vh - 56px);
+}
+.mainContent{
+  display: flex;
+  width: 100%;
+  height: fit-content;
+}
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
   background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
   min-height: calc(100vh - 56px);
@@ -52,6 +65,7 @@
 }
 
 .submission {
+  min-width: 30ch;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -114,9 +128,11 @@
   padding: 3px 1rem;
 }
 
-.rightPane .submissionTitle {
+ .submissionTitle {
   font-size: 1.3rem;
+  padding-bottom: 5px;
   margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 .rightPane .submissionInput {
   width: 100%;
@@ -135,16 +151,16 @@
   font-size: 0.9rem;
   color: #7f8487;
 }
-.submissionItemButtons a{
+.submissionItemButtons a {
   text-decoration: none;
   color: inherit;
   border: 1px solid #ccc;
   border-radius: 2px;
   padding: 3px 1rem;
   padding-bottom: 5px;
-} 
+}
 
-.missingSubmissionItem{
+.missingSubmissionItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -153,11 +169,29 @@
   border-bottom: 1px solid #eee;
   font-size: 1.2rem;
 }
-.missingSubmissionItem a{
+.missingSubmissionItem a {
   text-decoration: none;
   color: inherit;
   border-radius: 2px;
   padding: 3px 1rem;
   padding-bottom: 5px;
+}
 
+.submissionStats{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-top: 50px;
+  padding: 15px;
+}
+.submissionStatsItems{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 50px;
+}
+.submissionStatsItems >div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }

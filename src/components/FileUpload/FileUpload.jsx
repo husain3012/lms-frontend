@@ -8,20 +8,23 @@ var myWidget;
 
 const iframeRenderAbleFiles = ["pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "csv", "jpg", "jpeg", "png", "gif", "svg"];
 
-const PreviewFile = ({ uploadedFile, setUploadedFile }) => {
+const PreviewFile = ({ uploadedFile, setUploadedFile = (x) => x, setAllowUpload = (x) => x }) => {
   // preview file in iframe
-
 
   // check file extension
   console.log(uploadedFile);
   const fileExtension = uploadedFile.split(".").pop();
   const iframeRenderable = iframeRenderAbleFiles.includes(fileExtension);
+  const clearFileHandler = () => {
+    setAllowUpload(true);
+    setUploadedFile(null);
+  };
 
   return (
     <div className={classes.previewFile}>
       {iframeRenderable ? (
         <iframe
-        style={{borderRadius: "5px"}}
+          style={{ borderRadius: "5px" }}
           height={200}
           width={200}
           frameborder="0"
@@ -33,7 +36,9 @@ const PreviewFile = ({ uploadedFile, setUploadedFile }) => {
           title="preview"
         />
       ) : (
-        <div className={classes.filePlaceholder}><AiOutlineFileUnknown/></div>
+        <div className={classes.filePlaceholder}>
+          <AiOutlineFileUnknown />
+        </div>
       )}
 
       <div className={classes.actions}>
@@ -42,7 +47,7 @@ const PreviewFile = ({ uploadedFile, setUploadedFile }) => {
             <AiOutlineCloudDownload />
           </button>
         </a>
-        <button className={classes.removeButton} onClick={() => setUploadedFile(null)}>
+        <button className={classes.removeButton} onClick={clearFileHandler}>
           <MdClear />
         </button>
       </div>
@@ -50,7 +55,7 @@ const PreviewFile = ({ uploadedFile, setUploadedFile }) => {
   );
 };
 
-const FileUpload = ({ setUploadedFile = (x) => x, uploadedFile }) => {
+const FileUpload = ({ setUploadedFile = (x) => x, uploadedFile, setAllowUpload = (x) => x }) => {
   useEffect(() => {
     loadCloudinaryWidget(() => {
       const { cloudinary } = window;
@@ -71,7 +76,7 @@ const FileUpload = ({ setUploadedFile = (x) => x, uploadedFile }) => {
   }, [setUploadedFile]);
 
   return uploadedFile ? (
-    <PreviewFile uploadedFile={uploadedFile} setUploadedFile={setUploadedFile} />
+    <PreviewFile setAllowUpload={setAllowUpload} uploadedFile={uploadedFile} setUploadedFile={setUploadedFile} />
   ) : (
     <button onClick={() => myWidget.open()} className={classes.uploadBtn}>
       <BiImageAdd />

@@ -7,7 +7,7 @@ import Draggable from "react-draggable";
 import { getClassroomsAction } from "../../app/classroomSlice";
 import { useDispatch } from "react-redux";
 import styledComponents from "styled-components";
-
+import Skeleton from 'react-loading-skeleton'
 const StyledButton = styledComponents.button`
   background-color: #fafafa;
   border: 1px solid ${(props) => props.color};
@@ -93,7 +93,6 @@ export const ClassroomCardTeacher = ({ name, classroom_id, section, short_id, de
           </Link>
           <p className={classes["sub-card-footer"]}>Students Enrolled : {loading ? "Loading" : count}</p>
           <p className={classes["sub-card-footer"]}>Section : {section}</p>
-
         </div>
         <div id={`move_${classroom_id}`} className={classes["rem-card"]}>
           <p>{description}</p>
@@ -108,5 +107,13 @@ export const ClassroomCardTeacher = ({ name, classroom_id, section, short_id, de
         </div>
       </div>
     </Draggable>
+  );
+};
+
+export const ClassroomCardSkeleton = () => {
+  return (
+    <div className={classes.skeletonCard}>
+    <Skeleton  count={2} height={10} width={"10ch"} />
+    </div>
   );
 };

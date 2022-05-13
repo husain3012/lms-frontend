@@ -35,6 +35,11 @@
   font-weight: 500;
   font-size: 20px;
 }
+.login-btn:hover,
+.login-btn:focus {
+  background-color: #5d528f;
+  color: #fff;
+}
 
 /* mobile screens */
 @media screen and (max-width: 768px) {

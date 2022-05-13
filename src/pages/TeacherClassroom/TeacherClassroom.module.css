@@ -7,6 +7,14 @@
   background-color: #fff;
   background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
 }
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 56px);
+  background-color: #fff;
+  background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+}
 .headerCard {
   min-height: 30vh;
   border-radius: 10px;
@@ -32,13 +40,13 @@
 .editor {
   width: 80%;
 }
-.editor .titleInput{
+.editor .titleInput {
   width: 100%;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   border-radius: 5px;
 }
-.editor .titleInput:focus{
+.editor .titleInput:focus {
   outline: none;
 }
 .rightInfoPane {

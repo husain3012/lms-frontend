@@ -10,7 +10,9 @@ import { makeToast } from "../../components/common/Toast";
 import NoteListCard from "../../components/NoteListCatd/NoteListCard";
 import styledComponents from "styled-components";
 import { getDarkerColor } from "../../utils/colors";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setColorTheme } from "../../app/uiSlice";
+import { Bars } from "react-loader-spinner";
 const StyledButton = styledComponents.button`
 background-color: ${(props) => props.color};
 color: white;
@@ -26,11 +28,6 @@ border-color: ${(props) => props.color};
 
 `;
 
-const { Select } = Form;
-// const modules = {
-//   toolbar: [[{ header: [1, 2, false] }], ["bold", "italic", "underline", "strike", "blockquote"], [{ list: "ordered" }, { list: "bullet" }], ["link", "image"], ["clean"], ["code-block"], ["video"]],
-// };
-
 const StudentClassroom = () => {
   const [classroom, setClassroom] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -38,13 +35,15 @@ const StudentClassroom = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
- 
+  const dispatch = useDispatch();
+  const { themeColor, themeColorDark } = useSelector((state) => state.ui);
   const { id: classroom_id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(`/api/classroom/${classroom_id}`);
         setClassroom(res.data);
+        dispatch(setColorTheme(res.data.color));
         console.log(res.data);
         setLoading(false);
       } catch (error) {
@@ -69,8 +68,6 @@ const StudentClassroom = () => {
     fetchData();
   }, [classroom_id]);
 
-
-
   const copyToClipboard = () => {
     navigator.clipboard.writeText(classroom.short_id);
   };
@@ -81,33 +78,36 @@ const StudentClassroom = () => {
     backgroundPosition: "center",
   };
 
-  return loading ? (
-    <h1>Loading</h1>
-  ) : (
+  return (
     <>
       <Navbar right={<NavUser />} />
-      <div className={classes.main}>
-        <div className={classes.headerCard} style={headerStyle}>
-          <div className={classes.headerCardContent}>
-            <h1 className={classes.headerCardTitle}>{classroom.name}</h1>
-            <p className={classes.headerCardSubtitle}>Section: {classroom.section}</p>
-            <p className={classes.headerCardSubtitle}>{classroom.description}</p>
+      {loading ? (
+        <div className={classes.loadingContainer}>
+          <Bars color={themeColor} />
+        </div>
+      ) : (
+        <div className={classes.main}>
+          <div className={classes.headerCard} style={headerStyle}>
+            <div className={classes.headerCardContent}>
+              <h1 className={classes.headerCardTitle}>{classroom.name}</h1>
+              <p className={classes.headerCardSubtitle}>Section: {classroom.section}</p>
+              <p className={classes.headerCardSubtitle}>{classroom.description}</p>
+            </div>
+          </div>
+
+          <div className={classes.streamContainer}>
+            {loadingStream ? (
+              <h1>Loading</h1>
+            ) : (
+              <>
+                {notes.map((note) => (
+                  <NoteListCard color={classroom.color} key={note.note_id} note={note} />
+                ))}
+              </>
+            )}
           </div>
         </div>
-        
-
-        <div className={classes.streamContainer}>
-          {loadingStream ? (
-            <h1>Loading</h1>
-          ) : (
-            <>
-              {notes.map((note) => (
-                <NoteListCard color={classroom.color} key={note.note_id} note={note} />
-              ))}
-            </>
-          )}
-        </div>
-      </div>
+      )}
     </>
   );
 };

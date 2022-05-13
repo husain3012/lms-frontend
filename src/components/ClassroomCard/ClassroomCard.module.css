@@ -19,7 +19,6 @@
   padding: 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-image: url("https://www.transparenttextures.com/patterns/crissxcross.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
@@ -68,4 +67,16 @@
 }
 .sub-card p {
   margin: 0;
+}
+
+
+.skeletonCard{
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  height: 310px;
+  width: 290px;
+  border-radius: 5px;
+  background-color: #e6e6e6;
+
 }
