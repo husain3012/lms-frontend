@@ -36,7 +36,7 @@ const App = () => {
   }, [dispatch]);
 
   const isLoggedIn = useSelector((state) => state.auth.isAuthenticated);
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state) => state.auth.token) || localStorage.getItem("token");
   const userType = useSelector((state) => state.auth.type);
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   // base url for backend
@@ -142,7 +142,7 @@ const App = () => {
               </RequireAuth>
             }
           />
-          <Route exact path="/classroom/:id" element={<RequireAuth>{userType === "student" ? <StudentClassroom /> : <TeacherClassroom />}</RequireAuth>} />
+          <Route path="/classroom/:id/*" element={<RequireAuth>{userType === "student" ? <StudentClassroom /> : <TeacherClassroom />}</RequireAuth>} />
           <Route
             exact
             path="/note/:id"

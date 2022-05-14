@@ -1,0 +1,54 @@
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  background-color: #fff;
+  background-image: url(http://www.transparenttextures.com/patterns/grid-me.png);
+}
+.container h1{
+  font-size: 2rem;
+  margin-left: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+.student {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.studentAvatar {
+  margin-bottom: auto;
+  margin-right: 1ch;
+}
+.studentActions {
+  margin-left: auto;
+}
+.studentActionBtn {
+  outline: none;
+  border: none;
+  border: 1px solid #ff4949;
+  border-radius: 3px;
+  background-color: transparent;
+  color: #ff4949;
+  padding: 2px 10px;
+  transition: all 0.3s ease;
+}
+.studentActionBtn:hover {
+  transition: all 0.3s ease;
+  background-color: #ff4949;
+  color: #fff;
+}
+
+.studentInfo a {
+  color: #413F42;
+}
+.studentInfo {
+  color: #7F8487;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import NavUser from "../../components/NavUser/NavUser";
-import { useParams } from "react-router-dom";
+import { useParams, Routes, Route, useMatch } from "react-router-dom";
 import classes from "./TeacherClassroom.module.css";
 import axios from "axios";
 import ReactQuill from "react-quill";
@@ -15,6 +15,7 @@ import { getDarkerColor } from "../../utils/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { setColorTheme } from "../../app/uiSlice";
 import { Bars } from "react-loader-spinner";
+import StudentsList from "./StudentsList";
 const StyledButton = styledComponents.button`
 background-color: ${(props) => props.color};
 color: white;
@@ -144,63 +145,86 @@ const TeacherClassroom = () => {
     backgroundImage: `url("https://www.transparenttextures.com/patterns/diagmonds.png")`,
     backgroundPosition: "center",
   };
-
+  const currentRoute = useMatch("/classroom/:id/*").pathnameBase;
+  console.log(currentRoute);
+  const navLinks = [
+    {
+      name: "Stream",
+      path: `${currentRoute}`,
+    },
+    {
+      name: "Students",
+      path: `${currentRoute}/students`,
+    },
+  ];
   return (
     <>
-      <Navbar right={<NavUser />} />
+      <Navbar right={<NavUser />} links={navLinks} />
       {loading ? (
         <div className={classes.loadingContainer}>
           <Bars color={themeColor} />
         </div>
       ) : (
         <div className={classes.main}>
-          <div className={classes.headerCard} style={headerStyle}>
-            <div className={classes.headerCardContent}>
-              <h1 className={classes.headerCardTitle}>{classroom.name}</h1>
-              <p className={classes.headerCardSubtitle}>Section: {classroom.section}</p>
-              <p className={classes.headerCardSubtitle}>{classroom.description}</p>
-            </div>
-          </div>
-          <Form onSubmit={postNoteHandler} className={classes.postFormContainer}>
-            <div className={classes.leftInfoPane}>
-              <StyledDivSecondary color={themeColor} className={classes.classCodeBox}>
-                <h2 className={classes.classCodeTitle}>Class Code</h2>
-                <QRCode value={classroom.short_id} size={100} fgColor={themeColorDark} />
-                <span data-tip data-for="copy-class-code" id="copy-class-code" onClick={copyToClipboard} style={{ cursor: "copy" }}>
-                  {classroom.short_id.slice(10) + "..."}
-                </span>
-              </StyledDivSecondary>
-            </div>
+          <Routes>
+            <Route
+              exact
+              path={"/"}
+              element={
+                <>
+                  <div className={classes.headerCard} style={headerStyle}>
+                    <div className={classes.headerCardContent}>
+                      <h1 className={classes.headerCardTitle}>{classroom.name}</h1>
+                      <p className={classes.headerCardSubtitle}>Section: {classroom.section}</p>
+                      <p className={classes.headerCardSubtitle}>{classroom.description}</p>
+                    </div>
+                  </div>
+                  <Form onSubmit={postNoteHandler} className={classes.postFormContainer}>
+                    <div className={classes.leftInfoPane}>
+                      <StyledDivSecondary color={themeColor} className={classes.classCodeBox}>
+                        <h2 className={classes.classCodeTitle}>Class Code</h2>
+                        <QRCode value={classroom.short_id} size={100} fgColor={themeColorDark} />
+                        <span data-tip data-for="copy-class-code" id="copy-class-code" onClick={copyToClipboard} style={{ cursor: "copy" }}>
+                          {classroom.short_id.slice(10) + "..."}
+                        </span>
+                      </StyledDivSecondary>
+                    </div>
 
-            <div className={classes.editor}>
-              <input className={classes.titleInput} required type="text" placeholder="Title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} />
-              <ReactQuill className={classes.quill} theme="snow" value={noteBody} onChange={setNoteBody} modules={modules} formats={formats} />
-            </div>
-            <div className={classes.rightInfoPane}>
-              <Select required onChange={(e) => setNoteType(e.target.value)} value={noteType} className={classes.select}>
-                <option value={""}>Select type</option>
-                <option value={"announcement"}>Announcement</option>
-                <option value={"assignment"}>Assignment</option>
-                <option value={"quiz"}>Quiz</option>
-                <option value={"studyMaterial"}>Study Material</option>
-              </Select>
+                    <div className={classes.editor}>
+                      <input className={classes.titleInput} required type="text" placeholder="Title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} />
+                      <ReactQuill className={classes.quill} theme="snow" value={noteBody} onChange={setNoteBody} modules={modules} formats={formats} />
+                    </div>
+                    <div className={classes.rightInfoPane}>
+                      <Select required onChange={(e) => setNoteType(e.target.value)} value={noteType} className={classes.select}>
+                        <option value={""}>Select type</option>
+                        <option value={"announcement"}>Announcement</option>
+                        <option value={"assignment"}>Assignment</option>
+                        <option value={"quiz"}>Quiz</option>
+                        <option value={"studyMaterial"}>Study Material</option>
+                      </Select>
 
-              <StyledButton variant="primary" className={classes.postButton} type="submit" color={themeColor}>
-                Post
-              </StyledButton>
-            </div>
-          </Form>
-          <div className={classes.streamContainer}>
-            {loadingStream ? (
-              <h1>Loading</h1>
-            ) : (
-              <>
-                {notes.map((note) => (
-                  <NoteListCard color={themeColor} key={note.note_id} note={note} />
-                ))}
-              </>
-            )}
-          </div>
+                      <StyledButton variant="primary" className={classes.postButton} type="submit" color={themeColor}>
+                        Post
+                      </StyledButton>
+                    </div>
+                  </Form>
+                  <div className={classes.streamContainer}>
+                    {loadingStream ? (
+                      <h1>Loading</h1>
+                    ) : (
+                      <>
+                        {notes.map((note) => (
+                          <NoteListCard color={themeColor} key={note.note_id} note={note} />
+                        ))}
+                      </>
+                    )}
+                  </div>
+                </>
+              }
+            />
+
+            <Route path={`/students`} exact element={<StudentsList classroom_id={classroom_id} />} />
+          </Routes>
         </div>
       )}
     </>

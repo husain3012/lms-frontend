@@ -179,7 +179,7 @@ const NotePage = () => {
                     <AiOutlineClockCircle /> {dayjs(note.created_at).format("YYYY-MM-DD, hh:mm A")}
                   </span>
                   <span className={classes.notePostingInfo}>
-                    <AiOutlineUser /> {note.teacher_name}, <Link to={`/classroom/${note.classroom_id}`}>{note.classroom_name}</Link>
+                    <AiOutlineUser /> {note.teacher_name}, <Link style={{color:themeColor, fontWeight:"bold"}} to={`/classroom/${note.classroom_id}`}>{note.classroom_name}</Link>
                   </span>
                 </div>
 
@@ -268,7 +268,6 @@ const NotePage = () => {
                       <h3 className={classes.submissionTitle} style={{ color: themeColor }}>
                         Missing submissions
                       </h3>
-                      <hr />
 
                       {allSubmissions
                         .filter((sub) => sub.submissions.length === 0)
@@ -286,7 +285,7 @@ const NotePage = () => {
               )}
             </div>
           </div>
-          {note.type === "assignment" && userType === "teacher" &&  (
+          {note.type === "assignment" && userType === "teacher" && (
             <div className={classes.submissionStats}>
               <h3 className={classes.submissionTitle} style={{ color: themeColor }}>
                 Submission Stats
@@ -319,6 +318,11 @@ const NotePage = () => {
                 <div style={{ width: 400 }}>
                   <Line
                     options={{
+                      scales: {
+                        y: {
+                          min: 0,
+                        },
+                      },
                       plugins: {
                         legend: {
                           position: "bottom",
@@ -330,11 +334,11 @@ const NotePage = () => {
                       labels: statsData.submissionTimeline?.map((submission) => dayjs(submission.date).format("MMM DD")),
                       datasets: [
                         {
-                          label: "Submissions",
+                          label: "Submissions per day",
                           data: statsData.submissionTimeline?.map((submission) => submission.count),
                           borderColor: "rgb(255, 99, 132)",
                           backgroundColor: "rgba(255, 99, 132, 0.5)",
-                          tension: 0.1
+                          tension: 0.1,
                         },
                       ],
                     }}
