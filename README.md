@@ -2,6 +2,7 @@
 
 ## Members:
 - [20BCS028 Husain Shahid Rao](https://github.com/husain3012)
+- [20BCS022 Fardeen Hussain](https://github.com/Fardeen112)
 
 
 ## Available Scripts
