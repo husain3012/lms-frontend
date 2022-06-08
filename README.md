@@ -1,7 +1,7 @@
 # DBMS Project, Team 4
 
 ## Members:
-- 20BCS028 Husain Shahid Rao [🔗](https://github.com/husain3012)
+- [20BCS028 Husain Shahid Rao](https://github.com/husain3012)
 
 
 ## Available Scripts
