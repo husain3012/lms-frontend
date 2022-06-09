@@ -4,7 +4,7 @@
 - [20BCS028 Husain Shahid Rao](https://github.com/husain3012)
 - [20BCS022 Fardeen Hussain](https://github.com/Fardeen112)
 - [20BCS046 Saquib Ali](http://github.com/saquibali7)
-
+- [20BCS050 Sparash Mahajan](http://github.com/sparshmahajan)
 
 ## Available Scripts
 
